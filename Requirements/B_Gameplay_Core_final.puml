@@ -1,0 +1,22 @@
+@startuml
+title B: Gameplay Core（最終調整）
+
+interface IYGInteractionInterface {
+  +OnElementReceived(EYGElementType Element, float Strength, AActor* Instigator)
+}
+
+class UYGStateComponent
+class UYGElementAffinityComponent
+class UYGInteractionResponseComponent
+class UYGRespawnComponent
+
+IYGInteractionInterface <|.. UYGInteractionResponseComponent
+UYGInteractionResponseComponent --> UYGStateComponent
+UYGInteractionResponseComponent --> UYGElementAffinityComponent
+
+note bottom
+属性入力は Interface 経由で統一。
+状態の真値は StateComponent に集約。
+end note
+
+@enduml

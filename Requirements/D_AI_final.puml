@@ -1,0 +1,32 @@
+@startuml
+title D: AI / StateTree（最終調整）
+
+class AYGEnemyCharacterBase
+class AYGGuardCharacter
+class AYGDroneActor
+class AYGEnemyAIController
+class UStateTreeComponent
+class UYGStateComponent
+class UYGInteractionResponseComponent
+interface IYGInteractionInterface
+
+AYGEnemyCharacterBase <|-- AYGGuardCharacter
+AYGEnemyCharacterBase <|-- AYGDroneActor
+
+IYGInteractionInterface <|.. UYGInteractionResponseComponent
+AYGEnemyCharacterBase *-- UYGStateComponent
+AYGEnemyCharacterBase *-- UYGInteractionResponseComponent
+
+AYGEnemyAIController --> UStateTreeComponent
+AYGEnemyAIController --> AYGEnemyCharacterBase
+
+note bottom
+連携フロー:
+InteractionResponse
+ -> StateComponent更新
+ -> StateTree Evaluator検知
+ -> 行動切替
+AIは状態を直接付与しない
+end note
+
+@enduml

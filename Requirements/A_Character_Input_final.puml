@@ -1,0 +1,34 @@
+@startuml
+title A: Character / Input / Camera（再生成）
+
+class AYGPlayableCharacterBase
+class AYGTenguCharacter
+class AYGKappaCharacter
+class AYGKitsuneCharacter
+class AYGKamaitachiCharacter
+
+class AYGPlayerController
+class UYGCharacterSwitchComponent
+class UYGInputRouterComponent
+
+class UYGAbilityComponent
+class UYGAbilityBase
+
+AYGPlayableCharacterBase <|-- AYGTenguCharacter
+AYGPlayableCharacterBase <|-- AYGKappaCharacter
+AYGPlayableCharacterBase <|-- AYGKitsuneCharacter
+AYGPlayableCharacterBase <|-- AYGKamaitachiCharacter
+
+AYGPlayerController --> AYGPlayableCharacterBase : Possess
+AYGPlayerController --> UYGCharacterSwitchComponent
+AYGPlayerController --> UYGInputRouterComponent
+
+AYGPlayableCharacterBase --> UYGAbilityComponent
+UYGAbilityComponent --> UYGAbilityBase
+
+note right of AYGPlayerController
+SetViewTargetWithBlendでカメラ切替
+各キャラがカメラを保持
+end note
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+title C: Field / Synergy（最終調整）
+
+class UYGSynergySystem <<UWorldSubsystem>>
+class FYGSynergyRequest { +Element +Location +Instigator }
+class FYGElementBalanceConstants
+class AYGElementFieldActor
+class UYGFieldContainerComponent
+class AYGColumnActor { +bReplicates=true }
+class AYGProjectileActor { +bReplicates=true +SetReplicatedMovement(true) <<when needed>> }
+class AYGSteamCloudActor { +bReplicates=true <<when needed>> }
+
+AYGElementFieldActor --> UYGFieldContainerComponent
+UYGSynergySystem --> FYGSynergyRequest
+UYGSynergySystem --> FYGElementBalanceConstants
+UYGSynergySystem --> AYGColumnActor : Spawn(Host)
+UYGSynergySystem --> AYGProjectileActor : Spawn(Host)
+UYGSynergySystem --> AYGSteamCloudActor : Spawn(Host)
+
+note right of UYGSynergySystem
+生成座標:
+- 既定: Field重心
+- 衝突点優先（任意）
+所有権:
+- Request.Instigator 継承
+同期:
+- Host Spawn
+- 動く生成物は ReplicatedMovement を検討
+end note
+
+@enduml

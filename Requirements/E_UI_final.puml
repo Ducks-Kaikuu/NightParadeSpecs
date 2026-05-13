@@ -1,0 +1,19 @@
+@startuml
+title E: UI（再生成）
+
+class WBP_GameHUD
+class WBP_PartyPanel
+class WBP_AbilityPanel
+class WBP_ObjectivePanel
+
+WBP_GameHUD --> WBP_PartyPanel
+WBP_GameHUD --> WBP_AbilityPanel
+WBP_GameHUD --> WBP_ObjectivePanel
+
+note bottom
+UIは最小構成
+説明UIは禁止
+ワールドで理解させる
+end note
+
+@enduml
